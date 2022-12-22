@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Your Orders |{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto p-6">
+    <h2 class="my-6 text-3xl text-[#7D5A50] font-bold">My orders</h2>
+    {% if request.user.orders.all %}
+
+    {% else %}
+    <div class='font-serif'>
+        <h2> There are No Orders </h2>
+        {% if cart.get_total_cost %}
+        <div>
+            You have items in cart to CHECKOUT Click <a href="{% url 'cart' %}" class="text-[#7D5A50] font-bold hover:text-[#000000] hover:underline">HERE</a>
+        </div>
+        {% else %}
+        <div>
+            To shop Click <a href="{% url 'shop' %}" class="text-[#7D5A50] font-bold hover:text-[#000000] hover:underline">HERE</a>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% for order in request.user.orders.all %}
+        <div class="w-full mb-6 p-6 pl-12 flex flex-wrap bg-[#FCDEC0] rounded-xl">
+            <div class="mb-6 flex justify-between">
+                <a href="#" class="font-bold">Order id: {{ order.id }}</a>
+            </div>
+
+            <div class="mb-6 w-full">
+                {% for item in order.items.all %}
+                    <div class="product mb-6 flex pr-6">
+                        <a href="#" class="w-1/5">
+                            <img class="hover:shadow-lg rounded-xl h-60" src="{{ item.product.get_thumbnail }}">
+                        </a>
+
+                        <div class="w-3/4 ml-10">
+                            <div class="flex justify-between">
+                                <a href="#" class="text-lg">{{ item.product.name }}</a>
+
+                                <p class="mb-6 pt-1 text-[#000000] font-bold">₹{{ item.get_total_price }}</p>
+                            </div>
+
+                            <hr>
+
+                            <div class="mt-6">
+                                Quantity: {{ item.quantity }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div>
+                <p class="text-lg">Date: {{ order.created_at }}</p>
+                <p class="text-lg">Total: ₹{{ order.get_total_price }}{% if order.paid %}(Amount Paid){% else %}(Amount Not Paid){% endif %}</p>
+                <p class="text-lg">Status: {{ order.status }}</p>
+                <p class="text-lg">Address: {{ order.address }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
