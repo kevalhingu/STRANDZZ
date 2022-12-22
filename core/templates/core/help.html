@@ -1,0 +1,134 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Help & Support |{% endblock %}
+
+{% block content %}
+<style>
+    * {
+      box-sizing:border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .container {
+      padding: 64px;
+    }
+    
+    .row:after {
+      content: "";
+      display: table;
+      clear: both
+    }
+    
+    .column-66 {
+      float: left;
+      width: 66.66666%;
+      padding: 20px;
+    }
+    
+    .column-33 {
+      float: left;
+      width: 33.33333%;
+      padding: 20px;
+    }
+    
+    .large-font {
+      font-size: 48px;
+    }
+    
+    .xlarge-font {
+      font-size: 64px
+    }
+    
+    .button {
+      border : 1px;
+      border: solid;
+      color: white;
+      padding: 10px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      border-color: #7D5A50;
+      background-color: #7D5A50;
+      margin: 15px;
+      font-weight: bold;
+    }
+    .button:hover{
+      background-color: #FFFFFF;
+      color: #7D5A50;
+      border-style: solid;
+      border-color: #7D5A50;
+    }
+    #but{
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+    }
+    #com{
+      color: #7D5A50;
+    }
+    @media screen and (max-width: 1000px) {
+      .column-66,
+      .column-33 {
+        width: 100%;
+        text-align: center;
+      }
+      img {
+        margin: auto;
+      }
+    }
+    </style>
+<div class="max-w-6xl mx-auto p-6">
+    <h2 class="font-bold text-[#7D5A50] text-6xl flex justify-center">Help & Support</h2>
+    <div class="container">
+        <div class="row">
+          <div class="column-66">
+            <h1 class="text-4xl" id="com"><b>Browse and search</b></h1>
+            
+            <p><span class="text-2xl font-bold" style="color:#B4846C;">Shop like a pro.</span> <br> If you want to buy like a pro then you should go with shop menu. The shop menu contain lots of categoeies and many products that you like.We have Accessories,Bags,Cloths for men and women, Shoes and many more.<br> Here you can go .. </p>
+            <a href="{% url 'shop' %}"><button class="button">shop</button></a>
+          </div>
+          <div class="column-33">
+            {% load static %} <img src="{% static "image/Ss3.png" %}" alt="home" />
+          </div>
+        </div>
+      </div>
+      
+      <!-- Clarity Section -->
+      <div class="container" style="background-color:#f1f1f1">
+        <div class="row">
+          <div class="column-33">
+            {% load static %} <img src="{% static "image/Ss2.png" %}" alt="home" />
+          </div>
+          <div class="column-66">
+            <h1 class="text-4xl"><b id="com">Orders</b></h1>
+            </b></h1>
+            <p><span class="text-2xl font-bold" style="color:#B4846C;">Orders in strandzz.</span> <br> If you want to place any order from strandzz you have to first login in our website.It will automatic redirect you to login page and then you can place your order which you have selected or choose in cart. If your order is empty it will show you message No orders and redirect you to shop page. <br> you can try yourself  </p>
+            <a href="{% url 'order' %}"> <button class="button">Orders</button></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- The App Section -->
+      <div class="container">
+        <div class="row">
+          <div class="column-66">
+            <h1 class="text-4xl"><b id="com">STRANDZZ</b></h1>
+            <h1 class="text-2xl" style="color:#B4846C;"><b>Any other problem ?</b></h1>
+            <p> If you face any problem which is not mentioned above you can contact us by click on the button below or you can also mail us by our mail id which is mentioned in footer . Feel free to contact us. </p>
+            <a href="{% url 'contact' %}"><button class="button">Contact us</button> </a>
+          </div>
+          <div class="column-33">
+              <img src="https://leadingwithquestions.com/wp-content/uploads/2019/08/Leader-Question-e1559322511996.jpg" width="335" height="571" >
+          </div>
+        </div>
+      </div>
+      
+<div>
+{% endblock %}

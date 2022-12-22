@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Contact Us |{% endblock %}
+
+{% block content %}
+{% comment %} <div class="max-w-6xl mx-auto p-6">
+    <h2 class="font-bold text-[#7D5A50] text-3xl">Contact Us</h2>
+    <iframe class="mt-6" src="https://docs.google.com/forms/d/e/1FAIpQLScreAy6-vvsfNdKLXYb99azh31FT1fv6cNWqiIi9tlCf5t3LA/viewform?embedded=true" width="1100" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<div> {% endcomment %}
+    <div class="max-w-lg mx-auto flex flex-wrap mt-5 mb-5 p-6">
+        <div class="w-full bg-[#FCDEC0] p-6 rounded-xl">
+            <h1 class="mb-6 text-3xl font-bold text-[#7D5A50] flex flex-col justify-center items-center">Contact Us</h1>
+    
+            <form method="post" action="{% url 'newcontent' %}" class="space-y-3">
+                {% csrf_token %}
+    
+                <div>
+                    <label class='text-[#000000] font-semibold'>Name</label>
+                    <input type="text" name="contactname" id="contactname" class="w-full mt-2 py-4 px-6 bg-white rounded-xl" {% if request.user.is_authenticated %} value="{{ request.user.first_name }} " {% endif %} required>
+                </div>
+    
+                <div>
+                    <label class='text-[#000000] font-semibold'>E-Mail</label>
+                    <input type="email" name="contactemail" id="contactemail" class="w-full mt-2 py-4 px-6 bg-white rounded-xl" {% if request.user.is_authenticated %} value="{{ request.user.email }} " {% endif %} required>
+                </div>
+                <div>
+                    <label class='text-[#000000] font-semibold'>Phone Number</label>
+                    <input type="tel" name="contactphone" id="contactphone" class="w-full mt-2 py-4 px-6 bg-white rounded-xl" required>
+                </div>
+                <div>
+                    <label class='text-[#000000] font-semibold'>Write your Problem</label>
+                    <textarea type="text" name="contactproblem" id="contactproblem" cols="30" rows="3" pattern="[0-9]{10}" class="w-full mt-2 py-4 px-6 bg-white rounded-xl" required></textarea>
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                    <button class="py-4 px-6 rounded-xl bg-[#FFFFFF] hover:bg-[#B4846C] text-[#B4846C] font-bold hover:text-[#FFFFFF]">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
